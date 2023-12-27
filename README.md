@@ -35,7 +35,7 @@ Por meio dos botões é possível:
 
 O projeto em questão faz uso de hardware específico para seu desenvolvimento, sendo empregada uma placa Orange PI PC Plus. Esta placa possui notáveis 40 pinos GPIO e é equipada com um processador H3 Quad-core Cortex-A7, com a arquitetura ARM V7 presente no processador.
 
-### [Orange Pi PC Plu](http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-PC-Plus.html)s - Especificações
+### Orange Pi PC Plus - Especificações
 
 ![1703101861440](image/README/1703101861440.png)
 
@@ -209,8 +209,6 @@ Abaixo são apresentados os fluxogramas dos processos de exibição das informa�
 
 * Linha 1 é a categoria e modo selecionado
 * Linha 2 depende do dado recebido pela UART
-
-`<a id="descricao_solucao"><a/>`
 
 ### Solução do Problema
 
