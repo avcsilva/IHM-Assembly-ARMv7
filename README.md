@@ -67,7 +67,7 @@ Visual Studio Code (VS Code): é um editor de código-fonte gratuito e de códig
 
 O fluxograma abaixo apresenta a maneira como os componentes do sistema são inicializados:
 
-    ![1703148623896](image/README/1703148623896.png)
+    ![1703695902740](image/README/1703695902740.png)
 
 O processo de execução do sistema funciona da seguinte forma:
 
@@ -104,7 +104,7 @@ O mapeamento e configuração dos pinos da interface GPIO da Orange Pi PC Plus p
 
 ### Fluxograma de funcionamento do Display LCD
 
-    ![1703151492925](image/README/1703151492925.png)
+    ![1703695932771](image/README/1703695932771.png)
 
 O processo de execução da inicialização do display funciona no seguinte modo:
 
@@ -140,9 +140,9 @@ Escrita de Dados para CGRAM/DDRAM:
 
 As imagens abaixo se referem, respectivamente aos fluxograma de mapeamento de memória e de configuração.
 
-![1703169824137](image/README/1703169824137.png)
+![1703696105414](image/README/1703696105414.png)
 
-![1703167966524](image/README/1703167966524.png)
+![1703696005456](image/README/1703696005456.png)
 
 Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
 
@@ -179,7 +179,7 @@ Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
    ### Fluxograma do Menu
 
    O fluxograma abaixo apresenta a maneira como são escolhidas as opções do menu do sistema:
-   ![1703446227617](image/README/1703446227617.png)
+   ![1703696017140](image/README/1703696017140.png)
 
    São utilizados 3 botões para navegar e selecionar as opções do menu.
 
@@ -193,19 +193,21 @@ Abaixo são apresentados os fluxogramas dos processos de exibição das informa�
 
 #### Tela de seleção
 
-![1703168683901](image/README/1703168683901.png)
+![1703696035160](image/README/1703696035160.png)
 
 * Formação genérica de telas de seleção (sensor, categoria, modo);
 * Linha 1 fixa para cada camada, linha 2 varia por opção;
 
-#### Tela de Resultado no modo normal (unica requisição)![1703168725835](image/README/1703168725835.png)
+#### Tela de Resultado no modo normal (unica requisição)
+
+![1703696053075](image/README/1703696053075.png)
 
 * Linha 1 é a categoria e modo;
 * Linha 2 depende do dado recebido pela UART;
 
 #### Tela de Resultado no modo contínuo
 
-![1703168886827](image/README/1703168886827.png)
+![1703696060763](image/README/1703696060763.png)
 
 * Linha 1 é a categoria e modo selecionado
 * Linha 2 depende do dado recebido pela UART
@@ -248,7 +250,7 @@ Raspberry Pi Assembly Language Programming, ARM Processor Coding: Livro que most
 
 Abaixo são aprsentados alguns testes realizados com o proposito de verificar o funcionamento do projeto:
 
-![1703445573103](image/README/1703445573103.png)
+![1703696082233](image/README/1703696082233.png)
 
 No primeiro teste o sensor de endereço 0x0F é selecionado e é verificado o estado de funcionamento do mesmo.
 
