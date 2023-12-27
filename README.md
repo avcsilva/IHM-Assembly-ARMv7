@@ -4,7 +4,7 @@
 
 Professor: Anfranserai Morais Dias
 
-Grupo: Antonio Vitor Costa Silva, Luis Felipe Pereira de Carvalho e Wesley Ramos dos Santos
+Grupo: Antonio Vitor Costa da Silva, Luis Felipe Pereira de Carvalho e Wesley Ramos dos Santos
 
 ## Seções
 
@@ -27,17 +27,25 @@ Por meio dos botões é possível:
 * Navegar entre as opções do menu;
 * Verificar o estado de funcionamento do sensor;
 * Solicitar a temperatura atual;
-* Solicitar a humidade atual;
+* Solicitar a umidade atual;
 * Iniciar e parar o sensoriamento contínuo de temperatura;
 * Iniciar e parar o sensoriamento contínuo de humidade;
 
 ## Hardware Utilizado
 
-O projeto em questão faz uso de hardware específico para seu desenvolvimento, sendo empregada uma placa Orange PI PC Plus. Esta placa possui notáveis 40 pinos GPIO e é equipada com um processador H3 Quad-core Cortex-A7, com a arquitetura ARM V7 presente no processador.
+O projeto em questão faz uso de hardware específico para seu desenvolvimento, sendo empregada uma placa Orange PI PC Plus, essa vista na figura 1. Esta placa possui notáveis 40 pinos GPIO e é equipada com um processador H3 Quad-core Cortex-A7, com a arquitetura ARM V7 presente no processador.
 
 ### Orange Pi PC Plus - Especificações
+<div align=center>
 
 ![1703101861440](image/README/1703101861440.png)
+</br>
+</br>
+Figura 1 - Placa Orange Pi PC Plus utilizada no projeto
+</br>
+</br>
+
+</div>
 
 | CPU                    |                                          H3 Quad-core Cortex-A7 H.265/HEVC 4K |
 | :--------------------- | ----------------------------------------------------------------------------: |
@@ -51,9 +59,18 @@ O projeto em questão faz uso de hardware específico para seu desenvolvimento, 
 
 ### Pinagens
 
-Através da interface GPIO da orange pi foi possivel realizar a conexão com o display LCD, os botões usados para navegação e ativação de desativação das medidas do sensor e a ESP (microcontroladora) que se conecta ao sensor DHT11:
+Através da interface GPIO da Orange Pi (figura 2) foi possivel realizar a conexão com o display LCD, os botões usados para navegação e ativação de desativação das medidas do sensor e a placa ESP (microcontroladora) que se conecta ao sensor DHT11:
+
+<div align=center>
 
 ![1703101804892](image/README/1703101804892.png)
+</br>
+</br>
+Figura 2 - Interface GPIO da Orange Pi PC Plus
+</br>
+</br>
+
+</div>
 
 ## Software utilizado
 
@@ -65,17 +82,26 @@ Visual Studio Code (VS Code): é um editor de código-fonte gratuito e de códig
 
 ### Fluxograma do funcionamento do Sistema
 
-O fluxograma abaixo apresenta a maneira como os componentes do sistema são inicializados:
+O fluxograma abaixo (figura 3) apresenta a maneira como os componentes do sistema são inicializados:
+
+<div align=center>
 
 ![1703696242087](image/README/1703696242087.png)
+</br>
+</br>
+Figura 3 - Fluxograma de funcionamento geral do sistema
+</br>
+</br>
+
+</div>
 
 O processo de execução do sistema funciona da seguinte forma:
 
-* Inicialmente é realizado o mapeamento de memória das IOUT (pinos de entrada/saída) da Orange Pi de modo ops demais componentes (display, ESP e sensor) sejam corretamente conectados à placa de desenvolvimento;
-* Em seguida os pinos são configurados para que atendam o modo que foram definidos, com sendo de entrada, de saída ou de entrada e saída;
+* Inicialmente é realizado o mapeamento de memória das IOUT (pinos de entrada/saída) da Orange Pi de modo que os demais componentes (display, ESP e sensor) sejam corretamente conectados à placa de desenvolvimento e possam ser utilizados;
+* Em seguida os pinos são configurados para que atendam ao modo desejado, como sendo de entrada, de saída ou servente à UART da placa;
 * É realizado o processo de inicialização do display LCD;
-* Após é realizado o mapeamento e a configuração da UART para de que dados obtidos pelo DHT11 através da ESP sejam devidamente interpretados;
-* Por fim, ocorre o processo de apresentação das telas do menu, com as quais e o uso dos botões são selecionadas e realizadas as ações que se encerram quando o usuário retorna à escolha do sensor;
+* Após é realizado o mapeamento e a configuração da UART, para que se possa realizar a transmissão e recepção de dados entre a Orange Pi e a placa ESP;
+* Por fim, ocorre o processo de apresentação das telas do menu, com as quais sob o uso dos botões são selecionadas e realizadas as ações de seleção de informações, e se encerram quando o usuário tenta retornar à antes da seleção de sensor;
 
 A seguir, são expandidos os processos de mapeamento da memória e inicialização do display e da UART.
 
@@ -102,15 +128,26 @@ O mapeamento e configuração dos pinos da interface GPIO da Orange Pi PC Plus p
    * Realiza operações de leitura e escrita diretamente nos registros da GPIO mapeados.
    * Utiliza o endereço base armazenado para localizar os registros específicos de cada pino.
 
+Para a questão de configuração de direcionamento de pino e leitura/escrita de dado, é importante salientar que todos os offsets para suas localizações e configurações foram registrados em código e foram extraídos do datasheet oficial da Orange Pi PC Plus.
+
 ### Fluxograma de funcionamento do Display LCD
 
+<div align=center>
+
 ![1703696281516](image/README/1703696281516.png)
+</br>
+</br>
+Figura 4 - Fluxograma de inicialização do display LCD
+</br>
+</br>
+
+</div>
 
 O processo de execução da inicialização do display funciona no seguinte modo:
 
 Inicialização com Alimentação:
 
-* Processo de inicialização temporal.
+* Processo de inicialização sob tempos especificos (tal qual é solicitado pelo datasheet do display LCD).
 * Display inicializado internamente e sem exibição.
 
 Configuração de Função (Primeira Parte):
@@ -120,12 +157,12 @@ Configuração de Função (Primeira Parte):
 
 Configuração de Função (Segunda Parte):
 
-* Configura linha e fonte.
+* Configura a quantidade de linhas a serem utilizadas e a fonte da escrita, sendo no caso, respecticamente, 2 linhas e 5x8 pontos.
 
 Controle de Exibição On/Off:
 
 * Ativa display e cursor.
-* Display mostra apenas espaços **(Limpeza do display)**.
+* Display mostra apenas espaços **(Limpeza da exibição do display)**.
 
 Configuração do Modo de Entrada:
 
@@ -138,11 +175,29 @@ Escrita de Dados para CGRAM/DDRAM:
 
 ### Mapeamento da memória e configuração da UART
 
-As imagens abaixo se referem, respectivamente aos fluxograma de mapeamento de memória e de configuração.
+As figuras 5 e 6 abaixo se referem a, no fluxograma de funcionamento geral, respectivamente, às etapas de mapeamento e de configuração da UART.
+
+<div align=center>
 
 ![1703696105414](image/README/1703696105414.png)
+</br>
+</br>
+Figura 5 - Fluxograma do processo para mapeamento e pré configuração da UART
+</br>
+</br>
+
+</div>
+
+<div align=center>
 
 ![1703696005456](image/README/1703696005456.png)
+</br>
+</br>
+Figura 6 - Fluxograma de configuração da UART
+</br>
+</br>
+
+</div>
 
 Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
 
@@ -157,7 +212,7 @@ Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
    * Endereços de GPIO e UART são mapeados para controle.
 3. **Habilitação e Configuração do PLL:**
 
-   * Ativação e ajuste do PLL para fornecer o clock correto para a UART.
+   * Ativação e ajuste do PLL_PERIPH0 para fornecer o clock correto para a UART.
 4. **Seleção do Clock para UART3:**
 
    * Direcionamento específico do clock para UART3.
@@ -169,7 +224,7 @@ Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
    * Ajuste dos pinos para as funções de recepção e transmissão da UART.
 7. **Ajustes de Parâmetros da UART:**
 
-   * Configuração de paridade, tamanho do bit e baud rate.
+   * Desabilitação do bit de paridade, definição como 8 bits o tamanho das comunicações via UART e definição do baud rate para 9600.
    * Habilitação de FIFOs e remoção de bloqueios.
 8. **Envio e recebimento de Dados:**
 
@@ -178,43 +233,76 @@ Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
 
    ### Fluxograma do Menu
 
-   O fluxograma abaixo apresenta a maneira como são escolhidas as opções do menu do sistema:
+   O fluxograma abaixo na figura 7 apresenta a maneira como é feito o progresso entre as opções do menu do sistema:
+   <div align=center>
+   
    ![1703696017140](image/README/1703696017140.png)
+   </br>
+   </br>
+   Figura 7 - Fluxograma das telas a serem exibidas no projeto
+   </br>
+   </br>
+
+   </div>
 
    São utilizados 3 botões para navegar e selecionar as opções do menu.
 
-
-   * Os **botões 1 e 3** são utilizados para se movimentar entre as camadas de telas (exemplo: escolha entre os sensores (0x0F -> 0x01 -> 0x02 -> 0x03) e entre as categorias (temperatura, umidade e status)).
-   * O **botão 2** é utilizado para selecionar o sensor a ser utilizado e as ações que devem ser realizadas (Categoria e Modo).
+   * Os **botões 1 (voltar) e 2 (selecionar)** são utilizados para se movimentar entra as camadas, sendo o botão 1 para retornar (exemplo: Categoria -> Escolha Sensor) e o 2 para avançar (exemplo: Categoria -> Modo), sendo utilizado portanto para selecionar o sensor a ser utilizado e as ações que devem ser realizadas.
+   * O **botão 3 (avançar)** é utilizado para se movimentar entre as opções de cada camada nas telas de seleção (exemplo: escolha entre os sensores (0x0F -> 0x01 -> 0x02 -> 0x03) e entre as categorias (temperatura, umidade e status)).
 
 ### Processo de exibição
 
-Abaixo são apresentados os fluxogramas dos processos de exibição das informações no display LCD conforme os dados solicitados.
+Nas figuras 8, 9 e 10 abaixo são apresentados os fluxogramas dos processos de exibição das informações no display LCD conforme os dados solicitados.
 
 #### Tela de seleção
+<div align=center>
 
 ![1703696035160](image/README/1703696035160.png)
+</br>
+</br>
+Figura 8 - Fluxograma para formação de uma tela de seleção
+</br>
+</br>
+
+</div>
 
 * Formação genérica de telas de seleção (sensor, categoria, modo);
 * Linha 1 fixa para cada camada, linha 2 varia por opção;
 
 #### Tela de Resultado no modo normal (unica requisição)
+<div align=center>
 
 ![1703696053075](image/README/1703696053075.png)
+</br>
+</br>
+Figura 9 - Fluxograma para formação de resultado no modo normal
+</br>
+</br>
 
-* Linha 1 é a categoria e modo;
-* Linha 2 depende do dado recebido pela UART;
+</div>
+
+* Linha 1 é a categoria e modo selecionados;
+* Linha 2 depende do dado recebido pela UART, podendo representar uma mensagem de erro ou a informação recebida pela UART (como por exemplo a medida de temperatura ou umidade ou se o sensor funciona corretamente);
 
 #### Tela de Resultado no modo contínuo
+<div align=center>
 
 ![1703696060763](image/README/1703696060763.png)
+</br>
+</br>
+Figura 10 - Fluxograma para formação de resultado no modo contínuo
+</br>
+</br>
 
-* Linha 1 é a categoria e modo selecionado
-* Linha 2 depende do dado recebido pela UART
+</div>
+
+* Linha 1 é a categoria e modo selecionado;
+* Linha 2 depende do dado recebido pela UART tal qual na tela de resultado para o modo normal;
+* Diferentemente da tela de resultado para o modo normal, essa tela deve ser atualizada caso não seja pressionado o botão de retorno, de forma a demonstrar o sensoriamento contínuo solicitado;
 
 ### Solução do Problema
 
-Para a criação do projeto foi utilizada a linguagem assembly e um subconjunto do conjunto de instruções da arquitetura ARM V7, bem como a utilização do editor de texto Visual Studio Code, para a elaboração dos códigos fonte. O projeto foi sintetizado utilizando um computador de placa única, o Orange PI PC Plus, ao qual foram conectados periféricos como botões de pressão (push buttons) e um display LCD de 16x2 caracteres.
+Para a criação do projeto foi utilizada a linguagem assembly e um subconjunto do conjunto de instruções da arquitetura ARMv7, bem como a utilização do editor de texto Visual Studio Code, para a elaboração dos códigos fonte. O projeto foi sintetizado utilizando um computador de placa única, o Orange PI PC Plus, ao qual foram conectados periféricos como botões de pressão (push buttons), um display LCD de 16x2 caracteres e uma placa ESP (esta previamente programada) para realização da comunicação com um sensor DHT11.
 
 A solução desenvolvida é composta por arquivos fonte assembly (.s) e por um arquivo Make (Makefile), sendo eles:
 
@@ -234,7 +322,7 @@ O arquivo `uart.s` tem como principal propósito configurar e gerenciar a comuni
 
 "O arquivo `main.s` tem como principal propósito servir como o código principal do projeto, ele é usado para integralizar os demais códigos e gerenciar a a interface de usuário através de botões e um display LCD, configurando e controlando as comunicações UART para interagir com a ESP e o sensor DHT11, e manipulando entradas e saídas de GPIO. O código está estruturado para inicializar os periféricos necessários, exibir informações e responder a entradas do usuário, mantendo um loop de controle para monitorar e gerenciar as interações do sistema."
 
-O arquivo `makefile` tem como principal propósito automatizar o processo de compilação do principal arquivo assembly do projeto.
+O arquivo `makefile` tem como principal propósito automatizar o processo de compilação e montagem do principal arquivo assembly do projeto.
 
 ## Documentação utilizada:.
 
@@ -249,8 +337,16 @@ Raspberry Pi Assembly Language Programming, ARM Processor Coding: Livro que most
 ## Testes Realizados
 
 Abaixo são aprsentados alguns testes realizados com o proposito de verificar o funcionamento do projeto:
+<div align=center>
 
 ![1703696082233](image/README/1703696082233.png)
+</br>
+</br>
+Figura 11 - Exemplo de fluxos de testes realizados
+</br>
+</br>
+
+</div>
 
 No primeiro teste o sensor de endereço 0x0F é selecionado e é verificado o estado de funcionamento do mesmo.
 
@@ -268,7 +364,7 @@ Durante a realização dos teste pode-se notar que ao solicitar os valores de te
 
 Durante a construção do projeto foram constatados os seguintes problemas:
 
-* Exibição incorreta dos dados solicitados (lixo ou inexitência dos dados);
+* Exibição incorreta dos dados solicitados (lixo ou inexistência dos dados);
 * Recebimento de dados incorretos através da UART;
 * Leitura incorreta do pressionamento dos botões;
 
