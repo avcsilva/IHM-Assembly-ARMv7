@@ -67,7 +67,7 @@ Visual Studio Code (VS Code): é um editor de código-fonte gratuito e de códig
 
 O fluxograma abaixo apresenta a maneira como os componentes do sistema são inicializados:
 
-    ![1703695902740](image/README/1703695902740.png)
+![1703696242087](image/README/1703696242087.png)
 
 O processo de execução do sistema funciona da seguinte forma:
 
@@ -104,7 +104,7 @@ O mapeamento e configuração dos pinos da interface GPIO da Orange Pi PC Plus p
 
 ### Fluxograma de funcionamento do Display LCD
 
-    ![1703695932771](image/README/1703695932771.png)
+![1703696281516](image/README/1703696281516.png)
 
 O processo de execução da inicialização do display funciona no seguinte modo:
 
