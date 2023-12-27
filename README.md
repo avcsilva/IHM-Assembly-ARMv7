@@ -14,23 +14,14 @@ Grupo: Antonio Vitor Costa Silva, Luis Felipe Pereira de Carvalho e Wesley Ramos
 
 ## Seções
 
-&nbsp;&nbsp;&nbsp;[**1.** Introdução](#introducao)
-
-&nbsp;&nbsp;&nbsp;[**2.** Hardware Utilizado](#hardware_utilizado)
-
-&nbsp;&nbsp;&nbsp;[**3.** Software Utilizado](#softwares_utilizados)
-
-&nbsp;&nbsp;&nbsp;[**4.** ](#descricao_solucao)[Metodologia](#metodologia)
-
-&nbsp;&nbsp;&nbsp;[**5.** Testes realizados](#testes_realizados)
-
-&nbsp;&nbsp;&nbsp;[**6.** ](#limitacoes)[Problemas](#problemas)
-
-&nbsp;&nbsp;&nbsp;[**7.** Documentação Utilizada](#documentacao)
-
-&nbsp;&nbsp;&nbsp;[**8.** Execução do Projeto](#execucao_projeto)
-
-`<a id="introducao"></a>`
+1. [Introdução](#introdução)
+2. [Hardware Utilizado](#hardware-utilizado)
+3. [Software Utilizado](#software-utilizado)
+4. [Metodologia](#metodologia)
+5. [Testes realizados](#testes-realizados)
+6. [Problemas](#problemas)
+7. [Documentação Utilizada](#documentação-utilizada)
+8. [Execução do Projeto](#execução-do-projeto)
 
 ## Introdução
 
