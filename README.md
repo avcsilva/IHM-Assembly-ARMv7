@@ -1,16 +1,10 @@
-`<a id="top"></a>`
-
 # Monitoramento de temperatura e Umidade
-
----
 
 ## Problema II - TEC499 - MI Sistemas Digitais
 
 Professor: Anfranserai Morais Dias
 
 Grupo: Antonio Vitor Costa Silva, Luis Felipe Pereira de Carvalho e Wesley Ramos dos Santos
-
----
 
 ## Seções
 
@@ -37,10 +31,6 @@ Por meio dos botões é possível:
 * Iniciar e parar o sensoriamento contínuo de temperatura;
 * Iniciar e parar o sensoriamento contínuo de humidade;
 
----
-
-`<a id="hardware_utilizado"></a>`
-
 ## Hardware Utilizado
 
 O projeto em questão faz uso de hardware específico para seu desenvolvimento, sendo empregada uma placa Orange PI PC Plus. Esta placa possui notáveis 40 pinos GPIO e é equipada com um processador H3 Quad-core Cortex-A7, com a arquitetura ARM V7 presente no processador.
@@ -65,19 +55,13 @@ Através da interface GPIO da orange pi foi possivel realizar a conexão com o d
 
 ![1703101804892](image/README/1703101804892.png)
 
-`<a id="softwares_utilizados"></a>`
-
-## Softwares utilizados
+## Software utilizado
 
 Para o desenvolvimento e execução dos códigos, o Visual Studio Code foi utilizado como ferramenta de escrita.
 
 Visual Studio Code (VS Code): é um editor de código-fonte gratuito e de código aberto desenvolvido pela Microsoft. É multiplataforma, altamente extensível, oferece integração com Git, suporte a várias linguagens de programação, ferramentas de depuração integradas e um terminal incorporado.
 
-`<a id="metodologia"></a>`
-
 ## Metodologia
-
-`<a id="descricao_flux_sistema"><a/>`
 
 ### Fluxograma do funcionamento do Sistema
 
@@ -94,8 +78,6 @@ O processo de execução do sistema funciona da seguinte forma:
 * Por fim, ocorre o processo de apresentação das telas do menu, com as quais e o uso dos botões são selecionadas e realizadas as ações que se encerram quando o usuário retorna à escolha do sensor;
 
 A seguir, são expandidos os processos de mapeamento da memória e inicialização do display e da UART.
-
-`<a id="descricao_mapeamento_gpio"><a/>`
 
 ### Mapeamento da Memória e configuração dos pinos da GPIO
 
@@ -119,8 +101,6 @@ O mapeamento e configuração dos pinos da interface GPIO da Orange Pi PC Plus p
 5. **Acesso Direto aos Registros:**
    * Realiza operações de leitura e escrita diretamente nos registros da GPIO mapeados.
    * Utiliza o endereço base armazenado para localizar os registros específicos de cada pino.
-
-`<a id="descricao_flux_display_lcd"><a/>`
 
 ### Fluxograma de funcionamento do Display LCD
 
@@ -155,8 +135,6 @@ Configuração do Modo de Entrada:
 Escrita de Dados para CGRAM/DDRAM:
 
 * Escrita de dados no display.
-
-`<a id="descricao_flux_display_lcd"><a/>`
 
 ### Mapeamento da memória e configuração da UART
 
@@ -198,8 +176,6 @@ Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
    * Transmissão de dados e endereços por meio da UART.
    * Leitura de dados recebidos pela UART, verificando o FIFO.
 
-   `<a id="descricao_flux_menu"><a/>`
-
    ### Fluxograma do Menu
 
    O fluxograma abaixo apresenta a maneira como são escolhidas as opções do menu do sistema:
@@ -210,8 +186,6 @@ Abaixo, há a explicação dos processo de mapeamento e configuração da UART.
 
    * Os **botões 1 e 3** são utilizados para se movimentar entre as camadas de telas (exemplo: escolha entre os sensores (0x0F -> 0x01 -> 0x02 -> 0x03) e entre as categorias (temperatura, umidade e status)).
    * O **botão 2** é utilizado para selecionar o sensor a ser utilizado e as ações que devem ser realizadas (Categoria e Modo).
-
-`<a id="processos_exibicao"><a/>`
 
 ### Processo de exibição
 
@@ -262,8 +236,6 @@ O arquivo `uart.s` tem como principal propósito configurar e gerenciar a comuni
 
 O arquivo `makefile` tem como principal propósito automatizar o processo de compilação do principal arquivo assembly do projeto.
 
-`<a id="documentacao utilizada"></a>`
-
 ## Documentação utilizada:.
 
 [Datasheet da ](https://drive.google.com/drive/folders/1JmgtWTlGA-hPv47cLtEYZa-Y3UZPSQNN)Orange PI PC Plus/AllWinner : Contém todas as informações relacionadas ao funcionamento dos pinos da SBC Orange Pi Pc Plus, bem como seus endereços de memória e informações extras sobre como acessá-las e enviar dados para os pinos relacionados a entrada e saída de propósito geral (GPIO).
@@ -273,8 +245,6 @@ O arquivo `makefile` tem como principal propósito automatizar o processo de com
 [Tabela de syscalls do Linux 32 bits para ARM](https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#arm-32_bit_EABI): Documentação contendo tabela de chamadas ao sistema operacional como chamadas de nanoSleep, ou de escrita para serem executadas
 
 [Raspberry Pi Assembly Language Programming, ARM Processor Coding](https://link.springer.com/book/10.1007/978-1-4842-5287-1): Livro que mostra diversos casos de exemplo na prática do uso da linguagem Assembly na programação de dispositivos de placa única, no livro foi usado a Raspberry Pi.
-
-`<a id="testes_realizados"></a>`
 
 ## Testes Realizados
 
@@ -294,8 +264,6 @@ No quinto e ultimo teste, foi solicitado novamente o estado de funcionamento do 
 
 Durante a realização dos teste pode-se notar que ao solicitar os valores de temperatura e umidade em qualeur um dos modos há o recebimento de valores incorretos (lixo) ou não recebimento de nenhum valor o que pode indicar que há problema no recebimento dos dados mensurados na interface uart do projeto.
 
-`<a id="problemas"></a>`
-
 ## Problemas do Projeto
 
 Durante a construção do projeto foram constatados os seguintes problemas:
@@ -312,4 +280,4 @@ Em posse do código desse repositório e de um dispositivo com processador de ar
 make all
 ```
 
-#### [Voltar ao topo](#top)
+#### [Voltar ao topo](#Monitoramento-de-temperatura-e-Umidade)
